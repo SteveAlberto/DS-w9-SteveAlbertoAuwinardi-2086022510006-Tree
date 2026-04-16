@@ -2,6 +2,7 @@ package tree.mlbb;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TreeMLBBDefense {
 
@@ -94,6 +95,38 @@ public class TreeMLBBDefense {
         }
         path.remove(path.size() - 1);
         return false;
+    }
+
+    // TASK 2
+    static int countItemOccurrences(ItemNode node, String targetName) {
+        if (node == null) return 0;
+        
+        int count = 0;
+        if (node.name.equalsIgnoreCase(targetName)) {
+            count = 1;
+        }
+        
+        for (ItemNode child : node.children) {
+            count += countItemOccurrences(child, targetName);
+        }
+        return count;
+    }
+
+    // TASK 3
+    static void printPathsEndingWith(ItemNode node, List<String> path, String targetLeaf) {
+        if (node == null) return;
+        path.add(node.name);
+
+        if (node.children.isEmpty()) {
+            if (node.name.equalsIgnoreCase(targetLeaf)) {
+                System.out.println(String.join(" -> ", path));
+            }
+        } else {
+            for (ItemNode child : node.children) {
+                printPathsEndingWith(child, path, targetLeaf);
+            }
+        }
+        path.remove(path.size() - 1); 
     }
 
     public static void main(String[] args) {
@@ -219,4 +252,6 @@ public class TreeMLBBDefense {
             System.out.println("Item " + itemTarget + " tidak ditemukan dalam resep Dominance Ice.");
         }
     }
+
+    
 }
