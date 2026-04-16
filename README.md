@@ -25,3 +25,5 @@ countNodes, dan findPath menjadi sangat ringkas dan bersih dibandingkan mengguna
 6. What path is printed when searching for Corrosion Scythe?
   Dalam program untuk item Defense yang saya buat, ketika melakukan pencarian target untuk item dasar (misalnya Hero's Ring) dari root Dominance Ice, jalur yang
 dicetak adalah: Dominance Ice -> Black Ice Shield -> Hero's Ring. Ini membuktikan algoritma pencarian menelusuri dari root ke leaf yang tepat.
+
+
