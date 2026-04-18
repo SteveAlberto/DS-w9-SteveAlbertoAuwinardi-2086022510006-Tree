@@ -251,7 +251,48 @@ public class TreeMLBBDefense {
         } else {
             System.out.println("Item " + itemTarget + " tidak ditemukan dalam resep Dominance Ice.");
         }
-    }
-
     
+        //EKSEKUSI TAKE HOME TASKS
+        System.out.println("\nTASK 1: ADD NEW BRANCH");
+        ItemNode newComponent = new ItemNode("New Magic Armor", "Magic Def");
+        newComponent.addChild(magicResistCloak); 
+        dominanceIce.addChild(newComponent); 
+        System.out.println("Berhasil menambahkan cabang 'New Magic Armor' ke Dominance Ice.");
+        printTree(dominanceIce, 0);
+
+
+        System.out.println("\nTASK 2: COUNT ITEM OCCURRENCES");
+        String itemToCount = "Leather Jerkin";
+        int occurrences = countItemOccurrences(antiqueCuirass, itemToCount);
+        System.out.println("Jumlah " + itemToCount + " di dalam Antique Cuirass: " + occurrences);
+
+
+        System.out.println("\nTASK 3: PRINT PATHS ENDING WITH SPECIFIC ITEM");
+        String targetEnding = "Vitality Crystal";
+        System.out.println("Jalur pada Immortality yang berujung pada " + targetEnding + ":");
+        List<String> specificPath = new ArrayList<>();
+        printPathsEndingWith(immortality, specificPath, targetEnding);
+
+
+        System.out.println("\nTASK 5: ADD ONE MORE LEVEL & OBSERVE HEIGHT");
+        ItemNode ultimateDefense = new ItemNode("Aegis of The Immortal", "Ultimate Stats");
+        ultimateDefense.addChild(antiqueCuirass);
+        ultimateDefense.addChild(athenasShield);
+        
+        System.out.println("Tinggi Antique Cuirass (Sebelumnya): " + height(antiqueCuirass));
+        System.out.println("Tinggi Aegis of The Immortal (Tier 4 Baru): " + height(ultimateDefense));
+
+        System.out.println("\nTASK 4: SCANNER INPUT");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Masukkan nama mentahan yang ingin dicari di dalam Dominance Ice (cth: Hero's Ring): ");
+        String userInput = scanner.nextLine();
+        
+        List<String> userSearchPath = new ArrayList<>();
+        if (findPath(dominanceIce, userInput, userSearchPath)) {
+            System.out.println("Jalur menuju " + userInput + ": " + String.join(" -> ", userSearchPath));
+        } else {
+            System.out.println(userInput + " tidak ditemukan di resep ini.");
+        }
+        scanner.close();
+    }
 }
